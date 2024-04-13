@@ -15,15 +15,15 @@ export const InitialLoad = ({ fn, connecting = true }: { fn: () => void, connect
           className="relative block w-full glass p-6 sm:p-8 lg:p-12 rounded-xl"
         >
           <h2 className="font-favorit mt-2 block font-bold text-xl text-gray-100">
-            Welcome to Deepgram&apos;s
+            Welcome to Steve AI
             <br />
-            AI Agent Tech Demo.
+            AI avatar of Steve Jobs
           </h2>
           <div className="flex justify-center mt-4">
             <ul className="list-disc list-inside marker:text-[#13EF93]">
-              <li className="text-center">Nova-2 Speech-to-Text</li>
-              <li className="text-center">OpenAI GPT-3.5 Turbo</li>
-              <li className="text-center">Aura Text-to-Speech</li>
+              <li className="text-center">Deepgram Nova-2</li>
+              <li className="text-center">Custom Fine Tuned OpenAI GPT-3.5 Turbo</li>
+              <li className="text-center">Custom Voice Steve Jobs from Eleven Labs</li>
             </ul>
           </div>
           <span className="mt-4 block font-semibold">
@@ -34,14 +34,13 @@ export const InitialLoad = ({ fn, connecting = true }: { fn: () => void, connect
                   Connecting...
                 </div>
               ) : (
-                <>{isBrowser ? "Click" : "Tap"} here to start</>
+                <>Call Steve</>
               )}
             </div>
           </span>
           <span className="mt-4 block text-sm text-gray-100/70">
             <Headphones /> For optimal enjoyment, we recommend using headphones
-            while using this application. Minor bugs and annoyances may appear
-            while using this demo. Pull requests are welcome.
+            while using this application.
           </span>
         </button>
       </div>

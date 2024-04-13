@@ -78,15 +78,40 @@ export default function Conversation(): JSX.Element {
       const start = Date.now();
       const model = ttsOptions?.model ?? "aura-asteria-en";
 
-      const res = await fetch(`/api/speak?model=${model}`, {
-        cache: "no-store",
-        method: "POST",
-        body: JSON.stringify(message),
-      });
+      // const res = await fetch(`/api/speak?model=${model}`, {
+      //   cache: "no-store",
+      //   method: "POST",
+      //   body: JSON.stringify(message),
+      // });
+
+      const res = await fetch(
+          `https://api.elevenlabs.io/v1/text-to-speech/uiS8cvfV6fcpAvbC6Jei`,
+          {
+            method: "POST",
+            body: JSON.stringify({ 
+              text: message.content,
+              voice_settings: {
+                stability: 0.9,
+                similarity_boost: 0.1,
+                use_speaker_boost: true
+              }
+            }),
+            headers: {
+              'xi-api-key': '04cb8058e786e7687b224386f099a14a',
+              'Content-Type': 'application/json',
+              // Authorization: `token ${process.env.DEEPGRAM_API_KEY || ""}`,
+              // "X-DG-Referrer": url,
+            },
+          }
+      )
+
+      console.log("11 response", res, res.body);
 
       const headers = res.headers;
 
       const blob = await res.blob();
+
+      console.log("11 blob", blob);
 
       startAudio(blob, "audio/mp3", message.id).then(() => {
         addAudio({

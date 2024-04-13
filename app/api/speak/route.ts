@@ -16,6 +16,8 @@ export async function POST(req: NextRequest) {
 
   let text = message.content;
 
+  console.log("inputttt", text)
+
   text = text
     .replaceAll("¡", "")
     .replaceAll("https://", "")
@@ -61,6 +63,7 @@ export async function POST(req: NextRequest) {
     });
 
   // let inputText = message.content;
+  // console.log("inputtt", inputText);
 
   // inputText = inputText
   //   .replaceAll("¡", "")

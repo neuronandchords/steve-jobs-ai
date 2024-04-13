@@ -17,7 +17,7 @@ export const LeftBubble = ({ message }: { message: Message }) => {
             <div className="flex flex-col">
               <MessageHeader message={message} />
               <div className="text-sm font-normal pt-2 text-white/80 markdown">
-                <TextContent text={message.content} />
+                {/* <TextContent text={message.content} /> */}
               </div>
             </div>
           </div>
@@ -27,7 +27,7 @@ export const LeftBubble = ({ message }: { message: Message }) => {
         </div>
       </div>
       <div className="col-start-1 col-end-13 px-3 pb-3">
-        <MessageMeta className="ml-14" message={message} />
+        {/* <MessageMeta className="ml-14" message={message} /> */}
       </div>
     </>
   );

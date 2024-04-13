@@ -45,77 +45,11 @@ const voices: {
   };
 } = {
   "aura-asteria-en": {
-    name: "Asteria",
-    avatar: "/aura-asteria-en.svg",
+    name: "Steve Jobs",
+    avatar: "https://cdn.profoto.com/cdn/053149e/contentassets/d39349344d004f9b8963df1551f24bf4/profoto-albert-watson-steve-jobs-pinned-image-original.jpg?width=1280&quality=75&format=jpg",
     language: "English",
     accent: "US",
-  },
-  "aura-luna-en": {
-    name: "Luna",
-    avatar: "/aura-luna-en.svg",
-    language: "English",
-    accent: "US",
-  },
-  "aura-stella-en": {
-    name: "Stella",
-    avatar: "/aura-stella-en.svg",
-    language: "English",
-    accent: "US",
-  },
-  "aura-athena-en": {
-    name: "Athena",
-    avatar: "/aura-athena-en.svg",
-    language: "English",
-    accent: "UK",
-  },
-  "aura-hera-en": {
-    name: "Hera",
-    avatar: "/aura-hera-en.svg",
-    language: "English",
-    accent: "US",
-  },
-  "aura-orion-en": {
-    name: "Orion",
-    avatar: "/aura-orion-en.svg",
-    language: "English",
-    accent: "US",
-  },
-  "aura-arcas-en": {
-    name: "Arcas",
-    avatar: "/aura-arcas-en.svg",
-    language: "English",
-    accent: "US",
-  },
-  "aura-perseus-en": {
-    name: "Perseus",
-    avatar: "/aura-perseus-en.svg",
-    language: "English",
-    accent: "US",
-  },
-  "aura-angus-en": {
-    name: "Angus",
-    avatar: "/aura-angus-en.svg",
-    language: "English",
-    accent: "Ireland",
-  },
-  "aura-orpheus-en": {
-    name: "Orpheus",
-    avatar: "/aura-orpheus-en.svg",
-    language: "English",
-    accent: "US",
-  },
-  "aura-helios-en": {
-    name: "Helios",
-    avatar: "/aura-helios-en.svg",
-    language: "English",
-    accent: "UK",
-  },
-  "aura-zeus-en": {
-    name: "Zeus",
-    avatar: "/aura-zeus-en.svg",
-    language: "English",
-    accent: "US",
-  },
+  }
 };
 
 const voiceMap = (model: string) => {
@@ -142,21 +76,29 @@ const DeepgramContextProvider = ({ children }: DeepgramContextInterface) => {
     if (!connection && !connecting) {
       setConnecting(true);
 
-      const connection = new LiveClient(
-        await getApiKey(),
-        {},
-        {
-          model: "nova-2",
-          interim_results: true,
-          smart_format: true,
-          endpointing: 550,
-          utterance_end_ms: 900,
-          filler_words: true,
-        }
-      );
 
-      setConnection(connection);
-      setConnecting(false);
+      try{
+        const connection = new LiveClient(
+          await getApiKey(),
+          {},
+          {
+            model: "nova-2",
+            interim_results: true,
+            smart_format: true,
+            endpointing: 550,
+            utterance_end_ms: 900,
+            filler_words: true,
+          }
+        );
+        console.log("yayyy", connection);
+  
+        setConnection(connection);
+        setConnecting(false);
+      }
+      catch(error){
+        console.error("Error connecting to Deepgram:", error);
+        setConnecting(false);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connecting, connection]);
@@ -191,7 +133,8 @@ const DeepgramContextProvider = ({ children }: DeepgramContextInterface) => {
 
   useEffect(() => {
     if (connection && connection?.getReadyState() !== undefined) {
-      console.log("connection", connection, connection?.getReadyState(), LiveTranscriptionEvents);
+      console.log("connection", connection, connection?.getReadyState());
+
       connection.addListener(LiveTranscriptionEvents.Open, () => {
         console.log("listener added");
         setConnectionReady(true);
@@ -205,8 +148,8 @@ const DeepgramContextProvider = ({ children }: DeepgramContextInterface) => {
         setConnection(undefined);
       });
 
-      connection.addListener(LiveTranscriptionEvents.Error, () => {
-        console.log("listener error");
+      connection.addListener(LiveTranscriptionEvents.Error, (error) => {
+        console.log("listener error", error);
         toast(
           "An unknown error occured. We'll attempt to reconnect to Deepgram."
         );

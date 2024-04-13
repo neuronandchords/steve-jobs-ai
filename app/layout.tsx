@@ -30,9 +30,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aura-tts-demo.deepgram.com"),
-  title: "Deepgram AI Agent",
-  description: `Deepgram's AI Agent Demo shows just how fast Speech-to-Text and Text-to-Speech can be.`,
+  metadataBase: new URL("https://cdn.profoto.com/cdn/053149e/contentassets/d39349344d004f9b8963df1551f24bf4/profoto-albert-watson-steve-jobs-pinned-image-original.jpg?width=1280&quality=75&format=jpg"),
+  title: "Steve Jobs",
+  description: `Steve AI - Talk to Steve Jobs`,
   robots: {
     index: false,
     follow: false,
