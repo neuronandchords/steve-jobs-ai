@@ -140,23 +140,23 @@ const DeepgramContextProvider = ({ children }: DeepgramContextInterface) => {
         setConnectionReady(true);
       });
 
-      connection.addListener(LiveTranscriptionEvents.Close, () => {
-        toast("The connection to Deepgram closed, we'll attempt to reconnect.");
-        console.log("listener closed");
-        setConnectionReady(false);
-        connection.removeAllListeners();
-        setConnection(undefined);
-      });
+      // connection.addListener(LiveTranscriptionEvents.Close, () => {
+      //   toast("The connection to Deepgram closed, we'll attempt to reconnect.");
+      //   console.log("listener closed");
+      //   setConnectionReady(false);
+      //   connection.removeAllListeners();
+      //   setConnection(undefined);
+      // });
 
-      connection.addListener(LiveTranscriptionEvents.Error, (error) => {
-        console.log("listener error", error);
-        toast(
-          "An unknown error occured. We'll attempt to reconnect to Deepgram."
-        );
-        setConnectionReady(false);
-        connection.removeAllListeners();
-        setConnection(undefined);
-      });
+      // connection.addListener(LiveTranscriptionEvents.Error, (error) => {
+      //   console.log("listener error", error);
+      //   toast(
+      //     "An unknown error occured. We'll attempt to reconnect to Deepgram."
+      //   );
+      //   setConnectionReady(false);
+      //   connection.removeAllListeners();
+      //   setConnection(undefined);
+      // });
     }
 
     return () => {

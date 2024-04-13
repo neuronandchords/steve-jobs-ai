@@ -66,7 +66,7 @@ export default function Home() {
         </main>
 
         {/* height 4rem */}
-        <div className=" backdrop-blur-[2px] h-[4rem] flex items-center">
+        {/* <div className=" backdrop-blur-[2px] h-[4rem] flex items-center">
           <footer className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8 flex items-center justify-center gap-4 md:text-xl font-inter text-[#8a8a8e]">
             <span className="text-base text-[#4e4e52]">share it</span>
             <a
@@ -125,7 +125,7 @@ export default function Home() {
               contact us
             </a>
           </footer>
-        </div>
+        </div> */}
       </div>
     </>
   );
